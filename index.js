@@ -25,7 +25,7 @@ io.sockets.on('connection',function(socket){
     count++;
     socket.emit('users',{number:count});
     socket.broadcast.emit('users',{number:count});
-    socket.emit('message',{text:'you connect!'});
+    socket.emit('message',{text:'欢迎您!'});
     socket.broadcast.emit('message',{text:'欢迎新用户加入'});
     console.log('User connect!');
     socket.on('message',function(data){
