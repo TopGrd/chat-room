@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='styleSheet', href='/stylesheets/bootstrap.min.css')
+  body
+    block content
+  script(src='https://cdn.socket.io/socket.io-1.2.0.js')
+  script(src='http://code.jquery.com/jquery-1.11.1.js')
+  script.
+    var socket = io.connect();
+    socket.on('welcome',function(data){
+      alert(data.text);
+    });
+    var _name = $('#name');
+    var setForm = $('#set_name');
+    var messageForm = $('#send_mes');
+    var message = $('#message');
+    var messages = $('#messages');
+    var namesList = $('#names ul');
+    setForm.submit(function(event){
+      event.preventDefault();
+      socket.emit('name',_name.val(),function(data){
+        if(data){
+          alert('设置成功！');
+          setForm.hide();
+          messageForm.show();
+          $('.panel').show();
+        }else{
+          setForm.prepend('<p>对不起，这个昵称正在使用中。</p>')
+        }
+      });
+    })
+    messageForm.submit(function(event){
+      event.preventDefault();
+      socket.emit('user message',message.val());
+      message.val('').focus();
+    })
+    socket.on('names',function(data){
+      var html = '';
+      for(var i=0;i<data.length;i++){
+        html += '<li>'+data[i]+'</li>';
+      }
+      namesList.empty().append(html);
+    })
+    socket.on('user message',function(data){
+      messages.append('<p><strong>'+data.name+'</strong>:\t'+data.message+'</p>');
+    })
