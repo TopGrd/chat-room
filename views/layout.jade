@@ -40,10 +40,10 @@ html
     socket.on('names',function(data){
       var html = '';
       for(var i=0;i<data.length;i++){
-        html += '<li>'+data[i]+'</li>';
+        html += '<li style="display: inline-block;margin-left: 10px"><span class="glyphicon glyphicon-user"> </span> '+data[i]+'</li>';
       }
       namesList.empty().append(html);
     })
     socket.on('user message',function(data){
-      messages.append('<p><strong>'+data.name+'</strong>:\t'+data.message+'</p>');
+      messages.append('<p style="border-bottom:1px solid #eee"><strong>'+data.name+'</strong>:\t'+data.message+'</p>');
     })

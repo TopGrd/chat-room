@@ -16,3 +16,13 @@ a {
 .panel{
   display: none;
 }
+h1{
+  text-align: center;
+  font-weight: bold!important;
+}
+.tit{
+  text-align: center;
+}
+ul li{
+  list-style: none;
+}
