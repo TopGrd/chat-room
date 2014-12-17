@@ -3,11 +3,17 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='styleSheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='styleSheet', href='https://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://bootflat.github.io/bootflat/css/bootflat.css')
   body
     block content
   script(src='https://cdn.socket.io/socket.io-1.2.0.js')
   script(src='http://code.jquery.com/jquery-1.11.1.js')
+  script(src="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
+  <!-- Bootflat's JS files.-->
+  script(src="https://bootflat.github.io/bootflat/js/icheck.min.js")
+  script(src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js")
+  script(src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js")
   script.
     var socket = io.connect();
     socket.on('welcome',function(data){
@@ -19,6 +25,9 @@ html
     var message = $('#message');
     var messages = $('#messages');
     var namesList = $('#names ul');
+    var num;
+    num =Math.floor(Math.random()*10);
+    var src = '/images/';
     setForm.submit(function(event){
       event.preventDefault();
       socket.emit('name',_name.val(),function(data){
@@ -26,7 +35,8 @@ html
           alert('设置成功！');
           setForm.hide();
           messageForm.show();
-          $('.panel').show();
+          $('.mess').show();
+          messageForm.css('display','table');
         }else{
           setForm.prepend('<p>对不起，这个昵称正在使用中。</p>')
         }
@@ -45,5 +55,5 @@ html
       namesList.empty().append(html);
     })
     socket.on('user message',function(data){
-      messages.append('<p style="border-bottom:1px solid #eee"><strong>'+data.name+'</strong>:\t'+data.message+'</p>');
+      messages.append('<dd class="pos-right clearfix"><div class="circ"></div><div class="time">Dec 14</div><div class="events"><div class="pull-left"><img class="events-object img-rounded" src='+src +Math.floor(Math.random()*10)+'.jpg'+'></div><div class="events-body"><h4 class="events-heading">'+data.name+'</h4><p>'+data.message+'</p></div></div></dd>');
     })

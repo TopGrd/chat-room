@@ -1,19 +1,13 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
 a {
   color: #00B7FF;
 }
 .sendM{
-  position: fixed;
   bottom: 15px;
 }
 #send_mes{
   display: none;
 }
-.panel{
+.mess{
   display: none;
 }
 h1{
@@ -25,4 +19,14 @@ h1{
 }
 ul li{
   list-style: none;
+}
+body{
+  background-color: rgb(241, 242, 246);
+}
+.lz-margin{
+  margin:15px auto;
+}
+img{
+  width: 80px;
+  height: 80px;
 }

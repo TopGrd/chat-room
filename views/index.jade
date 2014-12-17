@@ -1,28 +1,35 @@
+//
+   Created by topgrd on 2014/12/17.
+
 extends layout
-
 block content
-  div.page-header
-    h1= title
-    p.tit 欢迎来到 #{title}
-  form(id='set_name',method='',role='form')
-    div.form-group
-      label(for='name') 昵称
-      input.form-control(type='text',id='name')
-    button(type='submit',class='btn btn-info') 确认
-  section#names
-    ul
-  .panel.panel-default
-    .panel-heading
-      h6 聊天信息
-    .panel-body#messages
-
-
-  .row.sendM
-    .col-md-10
-      form#send_mes
-        .input-group
-          input#message.form-control
-          span.input-group-btn
-            button.btn.btn-info(type='submit') 发送
-
-
+   div.container
+     h1= title
+     p.tit 欢迎来到 #{title}
+     div.row
+       div.col-md-6
+         form(id='set_name',method='',action='')
+           label(for='name') 昵称
+           input.form-control(type='text',id='name')
+           input#send-button.btn.btn-info.btn-block(type="submit" value="发送")
+     section#names
+       ul
+     div.row.mess
+       div.col-md-12
+         div.timeline
+           dl#messages
+             dt 2014
+             dd.pos-right.clearfix
+               div.circ
+               div.time Dec 14
+               div.events
+                 div.pull-left
+                   img.events-object.img-rounded(src="http://bootflat.github.io/img/photo-1.jpg")
+                 div.events-body
+                   h4.events-heading 蛋蛋
+                   p 欢迎来到聊个蛋，我是你们亲爱的蛋蛋。
+     div.row.sendM
+       div.col-sm-12
+         form#send_mes(style="margin:15px auto;")
+           input#message.form-control.lz-margin(type="text",value="")
+           input#send-button.lz-margin.btn.btn-info.btn-block(type="submit" value="发送")

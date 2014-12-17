@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div.page-header
+    h1= title
+    p.tit 欢迎来到 #{title}
+  form(id='set_name',method='',role='form')
+    div.form-group
+      label(for='name') 昵称
+      input.form-control(type='text',id='name')
+    button(type='submit',class='btn btn-info') 确认
+  section#names
+    ul
+  .panel.panel-default
+    .panel-heading
+      h6 聊天信息
+    .panel-body#messages
+
+
+  .row
+    .col-md-10
+      form#send_mes
+        .input-group
+          input#message.form-control
+          span.input-group-btn
+            button.btn.btn-info(type='submit') 发送
+
+
