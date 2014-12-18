@@ -21,12 +21,12 @@ ul li{
   list-style: none;
 }
 body{
-  background-color: rgb(241, 242, 246);
+  background-color: rgb(241, 242, 246)!important;
 }
 .lz-margin{
   margin:15px auto;
 }
 img{
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
 }
