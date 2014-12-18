@@ -19,16 +19,19 @@ html
     socket.on('welcome',function(data){
       alert(data.text);
     });
-    var _name = $('#name');
-    var setForm = $('#set_name');
-    var messageForm = $('#send_mes');
-    var message = $('#message');
+    var _name = $('#name'),
+        setForm = $('#set_name'),
+        messageForm = $('#send_mes'),
+        message = $('#message');
     var messages = $('#messages');
     var namesList = $('#names ul');
     var num;
-    var lag = 0;
+    var date = new Date();
+    var lag = 0, year = date.getFullYear(),month = date.getMonth()+1;
+    var hour =date.getHours(),min = date.getMinutes();
     num =Math.floor(Math.random()*10);
     var src = '/images/';
+    $('.lz-dt').html(year+'年'+month+'月');
     setForm.submit(function(event){
       event.preventDefault();
       socket.emit('name',_name.val(),function(data){
@@ -58,7 +61,8 @@ html
     socket.on('user message',function(data){
       lag++;
       if(lag%2==0){
-          messages.append('<dd class="pos-right clearfix"><div class="circ"></div><div class="time">Dec 14</div><div class="events"><div class="pull-left"><img class="events-object img-rounded" src='+src +Math.floor(Math.random()*10)+'.jpg'+'></div><div class="events-body"><h4 class="events-heading">'+data.name+'</h4><p>'+data.message+'</p></div></div></dd>');
+          messages.append('<dd class="pos-right clearfix"><div class="circ"></div><div class="time">'+hour+':'+min+'</div><div class="events"><div class="pull-left"><img class="events-object img-rounded" src='+src +Math.floor(Math.random()*10)+'.jpg'+'></div><div class="events-body"><h4 class="events-heading">'+data.name+'</h4><p>'+data.message+'</p></div></div></dd>');
+
       }else{
-            messages.append('<dd class="pos-left clearfix"><div class="circ"></div><div class="time">Dec 14</div><div class="events"><div class="pull-left"><img class="events-object img-rounded" src='+src +Math.floor(Math.random()*10)+'.jpg'+'></div><div class="events-body"><h4 class="events-heading">'+data.name+'</h4><p>'+data.message+'</p></div></div></dd>'); }
+            messages.append('<dd class="pos-left clearfix"><div class="circ"></div><div class="time">'+hour+'&nbsp;'+min+'</div><div class="events"><div class="pull-left"><img class="events-object img-rounded" src='+src +Math.floor(Math.random()*10)+'.jpg'+'></div><div class="events-body"><h4 class="events-heading">'+data.name+'</h4><p>'+data.message+'</p></div></div></dd>'); }
     })
